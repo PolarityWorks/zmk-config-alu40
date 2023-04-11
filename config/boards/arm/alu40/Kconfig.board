@@ -1,0 +1,8 @@
+# ALU40 board configuration
+
+# Copyright (c) 2022 Polarity Works
+# SPDX-License-Identifier: MIT
+
+config BOARD_ALU40
+	bool "alu40"
+	depends on SOC_NRF52840_QIAA
