@@ -145,7 +145,7 @@ layout_2x2u_transform:
 	status = "okay";
 };
 
-&usbd {
+zephyr_udc0: &usbd {
 	status = "okay";
 };
 
