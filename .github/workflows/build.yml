@@ -34,7 +34,7 @@ jobs:
       - name: West Zephyr export
         run: west zephyr-export
       - name: West Build (crbnevo)
-        run: west build -s zmk/app -b alu40 -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+        run: west build -s zmk/app -b alu40 -S studio-rpc-usb-uart -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: crbnevo Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
       - name: Rename zmk.uf2
