@@ -25,6 +25,7 @@
 		zmk,kscan = &kscan0;
 		zmk,underglow = &led_strip;
 		zmk,battery = &vbatt;
+		zmk,physical-layout = &layout_mit_transform;
 	};
 
 	sensors {
