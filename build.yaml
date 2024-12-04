@@ -1,0 +1,9 @@
+---
+include:
+  - board: alu40
+  - board: alu40
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+    artifact-name: alu40-studio-zmk
+  - board: alu40
+    shield: settings_reset

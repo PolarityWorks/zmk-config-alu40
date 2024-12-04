@@ -1,46 +1,6 @@
+name: Build ZMK firmware
 on: [push, pull_request, workflow_dispatch]
-
-name: Build
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container:
-      image: zmkfirmware/zmk-build-arm:stable
-    name: Build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cache west modules
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-zephyr-modules
-        with:
-          path: |
-            modules/
-            tools/
-            zephyr/
-            bootloader/
-            zmk/
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('manifest-dir/west.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - name: West Init
-        run: west init -l config
-      - name: West Update
-        run: west update
-      - name: West Zephyr export
-        run: west zephyr-export
-      - name: West Build (crbnevo)
-        run: west build -s zmk/app -b alu40 -S studio-rpc-usb-uart -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-      - name: crbnevo Kconfig file
-        run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
-      - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 alu40.uf2
-      - name: Archive (crbnevo)
-        uses: actions/upload-artifact@v4
-        with:
-          name: firmware
-          path: alu40.uf2
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
