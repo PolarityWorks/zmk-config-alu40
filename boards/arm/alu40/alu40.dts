@@ -36,7 +36,6 @@
 
 	kscan0: kscan_0 {
 		compatible = "zmk,kscan-gpio-matrix";
-		label = "KSCAN";
 		diode-direction = "col2row";
 
 		col-gpios
@@ -64,13 +63,11 @@
 
 	ext-power {
 		compatible = "zmk,ext-power-generic";
-		label = "EXT_POWER";
 		control-gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
 	};
 
 	encoder_1: encoder_1 {
 		compatible = "alps,ec11";
-		label = "ENCODER_ONE";
 		a-gpios = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 		b-gpios = <&gpio1 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 		steps = <18>;
@@ -86,7 +83,6 @@
 
 	vbatt: vbatt {
 		compatible = "zmk,battery-voltage-divider";
-		label = "VBATT";
 		io-channels = <&adc 2>;
 		output-ohms = <100000>;
 		full-ohms = <(100000 + 100000)>;
@@ -200,7 +196,6 @@ zephyr_udc0: &usbd {
 
 	led_strip: ws2812@0 {
 		compatible = "worldsemi,ws2812-spi";
-		label = "WS2812";
 
 		/* SPI */
 		reg = <0>;
